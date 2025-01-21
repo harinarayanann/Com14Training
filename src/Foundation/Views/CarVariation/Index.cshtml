@@ -1,0 +1,96 @@
+﻿@using EPiServer.Core
+@using EPiServer.Web.Mvc.Html
+
+@model Foundation.Models.ViewModels.CarVariationViewModel
+<div class="pdp-page">
+    <div>
+        Variant page
+    </div>
+
+    <div>
+        <img src="@Model.image">
+    </div>
+
+    <div>
+        <strong>Default Price: </strong> @Html.DisplayFor(m => m.priceString)
+    </div>
+
+     @* wait with this one *@
+
+    <div>
+        @Model.discountString
+    </div>
+    <div>
+        <strong>Discount Price: </strong> @Html.DisplayFor(m=>m.discountPrice)
+    </div>
+
+    <div>
+        @Html.CheckBoxFor(m=> m.CanBeMonogrammed) Can have a monogram 
+    </div>
+
+    @*NOT IN FUND-Exercise*@
+    <div>
+        @Html.PropertyFor(m=>m.ProductArea)
+    </div>
+
+    @* Have other name on SKU in lab *@
+    <div id="add-to-cart">
+        @* @using (Html.BeginForm("AddToCart", "CTDefaultCart", FormMethod.Post))
+
+
+
+        {
+            <div>
+                Quantity: <input type="text" name="Quantity" value="1" />
+            </div>
+             <div>
+                Monogram: <input type="text" name="Monogram" />
+            </div> 
+            <div>
+                <input type="hidden" name="Code" value="CAR01" />
+                <input type="hidden" name="ShipmentId" value="1" />
+
+                <input type="hidden" name="OrganizationId" value="Org1" />
+
+                <input type="hidden" name="ToShipmentId" value="11" />
+
+                <input type="hidden" name="DeliveryMethodId" value="DeliveryMethod1" />
+
+            </div>
+            <div>
+                <input type="submit" value="Add to cart" />
+            </div>
+        } *@
+
+        <button class="button-black--icon addToCartCT"
+                data="@Model.code"
+                qty="1"
+                store="delivery"
+                selectedstore=""
+                href="javascript:void(0);">
+            <i data-feather="shopping-cart"></i>
+            Add to cart
+        </button>
+    </div>
+
+    <div>
+        @using (Html.BeginForm("AddToWishList", "CarVariation"))
+        {
+            <div>
+                <input type="submit" value="Add to wishlist" />
+            </div>
+        }
+    </div>
+</div>
+@* <script src="c:\harifiles\learning\cms12com14-1\foundation\src\foundation\features\catalogcontent\product.js"></script>
+<script src="~/js/vendors/gijgo/gijgo.min.js" type="text/javascript"></script>
+<script src="~/js/extensions/CommentManager.js" type="text/javascript"></script> *@
+@* @section AdditionalScripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // let product = new Product('#add-to-cart');
+            // product.init();
+        });
+    </script>
+} *@
+
