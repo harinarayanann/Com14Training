@@ -24,7 +24,6 @@
             {
                 return null;
             }
-
             return _httpContextAccessor.HttpContext.Request.Cookies[cookie];
         }
 
