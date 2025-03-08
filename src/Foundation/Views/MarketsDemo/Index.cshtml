@@ -29,7 +29,7 @@
     {
         <li>@tax.Name - @tax.Percentage%</li>
     }
-</ul> 
+</ul> *@
 <p>
     Tax amount from old school method:
     @(Model.TaxAmountOldSchool != null ? Model.TaxAmountOldSchool.ToString() : "N/A")
@@ -50,15 +50,17 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.OptimizedPrices)
-        {
-            <tr>
-                <th scope="row">@item.MarketId.Value</th>
-                <td>@item.CustomerPricing.PriceTypeId</td>
-                <td>@item.CustomerPricing.PriceCode</td>
-                <td>@item.MinQuantity.ToString("F0")</td>
-                <td>@item.UnitPrice.ToString()</td>
-            </tr>
+        @if (Model.OptimizedPrices!=null){
+            foreach (var item in Model.OptimizedPrices)
+            {
+                <tr>
+                    <th scope="row">@item.MarketId.Value</th>
+                    <td>@item.CustomerPricing.PriceTypeId</td>
+                    <td>@item.CustomerPricing.PriceCode</td>
+                    <td>@item.MinQuantity.ToString("F0")</td>
+                    <td>@item.UnitPrice.ToString()</td>
+                </tr>
+            }
         }
     </tbody>
 </table>
@@ -89,5 +91,5 @@
 <h4>Promotions Total: @Model.PromotionsTotal%</h4>
 <h4>@(Model.PromotionsApplied ? "Promotion discount applied" : "Promotion discount not allowed")</h4>
 <h4>Selling Price: @Model.SellingPrice.ToString()</h4>
-*@
+
 <div style="height: 100px;"></div>

@@ -47,8 +47,8 @@ namespace Foundation.Controllers
             var shirtRef = _referenceConverter.GetContentLink("Swift-CT_1");
             viewModel.Shirt = _contentLoader.Get<CarVariation>(shirtRef);
 
-            //GetTaxInfo(viewModel);
-            //GetPriceInfo(viewModel);
+            GetTaxInfo(viewModel);
+            GetPriceInfo(viewModel);
 
             return View(viewModel);
         }
@@ -66,13 +66,13 @@ namespace Foundation.Controllers
             var shirtRef = _referenceConverter.GetContentLink("Swift-CT_1");
             viewModel.Shirt = _contentLoader.Get<CarVariation>(shirtRef);
 
-            //GetTaxInfo(viewModel);
-            //GetPriceInfo(viewModel);
+            GetTaxInfo(viewModel);
+            GetPriceInfo(viewModel);
 
             return View("Index", viewModel);
         }
 
-        /*
+        
         private void GetTaxInfo(DemoMarketsViewModel viewModel)
         {
             ICart cart = _orderRepository.LoadOrCreateCart<ICart>(CustomerContext.Current.CurrentContactId, "BogusCart");
@@ -80,7 +80,7 @@ namespace Foundation.Controllers
             IOrderAddress bogusAddress = _orderGroupFactory.CreateOrderAddress(cart);
             bogusAddress.CountryCode = viewModel.SelectedMarket.Countries.FirstOrDefault();
             bogusAddress.City = "Stockholm";
-            viewModel.TaxAmountOldSchool = GetTaxOldSchool(viewModel, bogusAddress);
+            //viewModel.TaxAmountOldSchool = GetTaxOldSchool(viewModel, bogusAddress);
 
             ILineItem lineItem = _orderGroupFactory.CreateLineItem(viewModel.Shirt.Code, cart);
             lineItem.Quantity = 1;
@@ -92,7 +92,7 @@ namespace Foundation.Controllers
             viewModel.TaxAmount = _taxCalculator.GetSalesTax(lineItem, viewModel.SelectedMarket,
                 bogusAddress, new Money(lineItem.PlacedPrice, viewModel.SelectedMarket.DefaultCurrency));
         }
-
+        /*
         private Money GetTaxOldSchool(DemoMarketsViewModel viewModel, IOrderAddress orderAddress)
         {
             string taxCategory = CatalogTaxManager.GetTaxCategoryNameById((int)viewModel.Shirt.TaxCategoryId);
@@ -108,7 +108,7 @@ namespace Foundation.Controllers
 
             return new Money(itemPrice * decTaxTotal / 100m, viewModel.SelectedMarket.DefaultCurrency);
         }
-
+        */
         private void GetPriceInfo(DemoMarketsViewModel viewModel)
         {
             var filter = new PriceFilter();
@@ -123,10 +123,10 @@ namespace Foundation.Controllers
 
             if (CustomerContext.Current.CurrentContact != null)
             {
-                if (!string.IsNullOrEmpty(PrincipalInfo.Current.Name))
+                if (!string.IsNullOrEmpty(PrincipalInfo.CurrentPrincipal.Identity.Name))
                 {
                     custPricing.Add(new CustomerPricing(CustomerPricing.PriceType.UserName,
-                        PrincipalInfo.Current.Name));
+                        PrincipalInfo.CurrentPrincipal.Identity.Name));
                 }
 
                 if (!string.IsNullOrEmpty(CustomerContext.Current.CurrentContact.EffectiveCustomerGroup))
@@ -140,12 +140,12 @@ namespace Foundation.Controllers
 
             viewModel.FilteredPrices = _priceService.GetPrices(viewModel.SelectedMarket.MarketId,
                 DateTime.Now, new CatalogKey(viewModel.Shirt.Code), filter);
-
-            Money lowestPrice = viewModel.FilteredPrices
+            
+            /*Money lowestPrice = viewModel.FilteredPrices
                 .OrderBy(p => p.UnitPrice).First().UnitPrice;
 
             Money lowestAllowed = viewModel.OptimizedPrices
-                .Where(p => p.CustomerPricing.PriceTypeId == (CustomerPricing.PriceType)3)
+                .Where(p => p.CustomerPricing.PriceTypeId == (CustomerPricing.PriceType)5)
                 .First().UnitPrice;
 
             var promos = _promotionEngine.Evaluate(viewModel.Shirt.ContentLink);
@@ -165,7 +165,9 @@ namespace Foundation.Controllers
                 }
             }
             else viewModel.SellingPrice = lowestPrice;
+            */
+            
         }
-        */
+        
     }
 }

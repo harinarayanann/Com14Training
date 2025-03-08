@@ -97,7 +97,9 @@
 	  <None Remove="Features\MultiShipment\**" />
 	  <Compile Remove="Infrastructure\Display\FoundationDisplayModeProvider.cs" />
 	  <Compile Remove="Infrastructure\Kpi\FilledInFormKpi.cs" />
+	  <Compile Remove="Infrastructure\Pricing\DemoPriceOptimizer.cs" />
 	  <Folder Include="Infrastructure\Kpi\" />
+	  <Folder Include="Infrastructure\Pricing\" />
 	  <Folder Include="wwwroot\" />
   </ItemGroup>
 </Project>

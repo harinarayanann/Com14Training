@@ -37,6 +37,8 @@ namespace Foundation.Infrastructure.Commerce
             _services.AddSingleton<IInstallStep, AddShippingMethods>();
             _services.AddSingleton<IInstallStep, AddTaxes>();
             _services.AddSingleton<IInstallStep, AddWarehouses>();
+            //_services.AddSingleton<IPriceOptimizer, DemoPriceOptimizer>();
+
             context.ConfigurationComplete += (o, e) =>
             {
                 e.Services.Intercept<IUpdateCurrentLanguage>(
