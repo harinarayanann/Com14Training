@@ -7,7 +7,9 @@ using Foundation.Infrastructure.Commerce.Models.EditorDescriptors;
 
 namespace Foundation.Models.Catalog
 {
-    [CatalogContentType(DisplayName = "Car Variant", GUID = "6582C432-B04E-4C0E-A4A0-FAC49CF51283", 
+    [CatalogContentType(DisplayName = "Car Variant", 
+        MetaClassName = "CarVariation",
+        GUID = "6582C432-B04E-4C0E-A4A0-FAC49CF51283", 
         Description = "Car variant supports multiple variation types")]
     [ImageUrl("/icons/cms/pages/CMS-icon-page-23.png")]
     public class CarVariation : VariationContent, IProductRecommendations, IFoundationContent/*, IDashboardItem*/
@@ -27,6 +29,11 @@ namespace Foundation.Models.Catalog
         [BackingType(typeof(PropertyString))]
         [Display(Name = "Size", Order = 5)]
         public virtual string Size { get; set; }
+
+        [Tokenize]
+        [IncludeInDefaultSearch]
+        [Display(Name = "Require Special Shipping", Order = 7)]
+        public virtual bool RequireSpecialShipping { get; set; }
 
         [Tokenize]
         [Searchable]

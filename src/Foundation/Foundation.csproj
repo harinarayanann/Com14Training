@@ -19,6 +19,7 @@
     <PackageReference Include="EPiServer.Labs.ProjectEnhancements" Version="1.0.0" />
     <PackageReference Include="EPiServer.MarketingAutomationIntegration.ExactTarget" Version="5.1.4" />
     <PackageReference Include="EPiServer.OpenIDConnect.UI" Version="3.11.3" />
+    <PackageReference Include="EPiServer.ServiceApi" Version="7.1.0" />
     <PackageReference Include="EPiServer.Session" Version="2.1.0" />
     <PackageReference Include="EPiServer.Telemetry.UI" Version="2.2.1" />
 
